@@ -1,1 +1,1 @@
-# platlist-project
+# playist-project
