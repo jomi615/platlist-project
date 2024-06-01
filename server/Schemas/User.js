@@ -5,19 +5,19 @@ const userSchema = mongoose.Schema ({
         type:String, 
         require:true
     },
-    access_token:{
-        type:String, 
-        require: true,
-        unique: true
-    }, 
 
-    expires_in:{
-        type:String
+    fav_genre:{
+        type:String,
+        require:true
     },
 
-    token_type:{
-        type:String
-    }
+    playlists:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Playlist"
+    }, 
+    
+
+    
 })
 
 const User = mongoose.model("User", userSchema);

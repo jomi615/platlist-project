@@ -9,12 +9,12 @@ const querystring = require('querystring');
 
 const connectionURI = "mongodb+srv://playlistdev:vibeycollection@playlist-cluster.7dymmjj.mongodb.net/?retryWrites=true&w=majority&appName=playlist-cluster"
 let REDIRECT_URI = 'http://localhost:8888/callback'
-let FRONTEND_URI = process.env.FRONTEND_URI || 'http://localhost:3000';
+let FRONTEND_URI = process.env.FRONTEND_URI || 'http://localhost:3000/profile';
 const PORT = process.env.PORT || 8888;
 
 if (process.env.NODE_ENV !== 'production') {
     REDIRECT_URI = 'http://localhost:8888/callback';
-    FRONTEND_URI = 'http://localhost:3000';
+    FRONTEND_URI = 'http://localhost:3000/profile';
   }
 
 const CLIENT_ID = "b200e6a1de8a440fbb247a9fdd17c02b"
@@ -23,7 +23,12 @@ const CLIENT_SECRET = "cc17b5100c3a4e4a9a0353f0a62fe9f1"
 
 main().catch((err) => console.log(err));
 async function main(){
-    await mongoose.connect(connectionURI)
+    try {
+        await mongoose.connect(connectionURI);
+        console.log("Connection to MongoDB was successful");
+    } catch (err) {
+        console.error("Error connecting to MongoDB", err);
+    }
 }
 
 let stateKey = 'spotify_auth_state'; 
@@ -87,7 +92,7 @@ app.get('/callback', function(req, res){
         if (!error && response.statusCode === 200) {
             const access_token = body.access_token;
             const refresh_token = body.refresh_token;
-  
+            console.log('Access Token:', access_token);
             res.redirect(
               `${FRONTEND_URI}/#${querystring.stringify({
                 access_token,
