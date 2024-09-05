@@ -5,17 +5,19 @@ import HomePage from "./pages/HomePage/HomePage"
 import Profile from "./pages/Profile/Profile"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import * as ROUTES from "./constants/routes";
-
+import Navbar from './components/Navbar'; // Adjust the path accordingly
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path={ROUTES.LOGIN} element={<Auth/>} />
-        <Route path={ROUTES.HOME} element={<HomePage/>} />
-        <Route path={ROUTES.PROFILE} element={<Profile/>}/>
-      </Routes>
+      <Navbar/>
+        <Routes>
+          <Route path={ROUTES.LOGIN} element={<Auth/>} />
+          <Route path={ROUTES.HOME} element={<HomePage/>} />
+          <Route path={ROUTES.PROFILE} element={<Profile/>}/>
+        </Routes>
     </Router>
+    
   );
 }
 
