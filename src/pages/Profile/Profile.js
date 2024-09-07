@@ -2,7 +2,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { ProfilePicContext } from '../../components/Contexts';
 import Navbar from '../../components/Navbar';
-
+import TopArtists from '../../components/TopArtists'
+import TopTracks from '../../components/TopTracks'
 const Profile = () => {
     const { user, accessToken } = useContext(ProfilePicContext);
     const [playlists, setPlaylists] = useState([]);
@@ -35,15 +36,22 @@ const Profile = () => {
     const playlist_list = createdByUser.map(item => (
         <div key={item.id}>
             {item.images && item.images.length > 0 && (
-                <img className="w-[300px] h-[300px]" src={item.images[0].url} alt="playlist cover"/>
+                <img className="w-[75px] h-[75px]" src={item.images[0].url} alt="playlist cover"/>
             )}
             <p>{item.name}</p>
         </div>
     ));
 
-    return (
-        <div className="flex flex-col justify-center items-center">
-            <div className="grid grid-cols-4 gap-4">
+    return (    
+        <div className="grid grid-cols-3">
+            <div>
+                <TopArtists/>
+            </div>
+            <div>
+                <TopTracks/>
+            </div>
+            <div className="grid grid-cols-1 gap-4">
+                Playlists:
                 {playlist_list}
             </div>
         </div>

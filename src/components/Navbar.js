@@ -7,7 +7,7 @@ const Navbar = () => {
 
     const tabs = [
         { name: "Profile", link: "/profile" },
-        { name: "Home", link: "/" },
+        { name: "Home", link: "/home" },
         { name: "Create Playlists" },
         { name: "Sign Out" }
     ];
