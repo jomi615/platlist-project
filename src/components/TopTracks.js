@@ -31,12 +31,12 @@ const TopTracks = () => {
             {item.album.images && item.album.images.length > 0 && (
                 <img className="w-[75px] h-[75px]" src={item.album.images[0].url} alt={`${item.name} cover`} />
             )}
-            <p>{item.name}</p>
+            <p className="font-barlow">{item.name}</p>
         </div>
     ));
     return(
         <div>
-            Top Songs:
+            <p className="font-tenor">Top Songs:</p>
             {display_top_songs}
         </div>
     )

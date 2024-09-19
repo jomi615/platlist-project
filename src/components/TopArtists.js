@@ -31,11 +31,11 @@ const TopArtists = () => {
             {item.images && item.images.length > 0 && (
                 <img className="w-[75px] h-[75px]" src={item.images[0].url} alt={`${item.name} cover`} />
             )}
-            <p>{item.name}</p>
+            <p className="font-barlow">{item.name}</p>
         </div>
     ));
     return(
-        <div>
+        <div className="font-albert">
             Top Artists:
             {display_top_artists}
         </div>
