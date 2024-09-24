@@ -6,18 +6,15 @@ const userSchema = mongoose.Schema ({
         require:true
     },
 
-    fav_genre:{
-        type:String,
+    access_token:{
+        type:String, 
         require:true
     },
 
-    playlists:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Playlist"
-    }, 
-    
-
-    
+    songs_played:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:Songs
+    }],
 })
 
 const User = mongoose.model("User", userSchema);

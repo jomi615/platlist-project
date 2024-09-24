@@ -35,9 +35,11 @@ const TopArtists = () => {
         </div>
     ));
     return(
-        <div className="font-albert">
+        <div className="font-tenor">
             Top Artists:
+            <div  className="h-96 overflow-y-scroll">
             {display_top_artists}
+            </div>
         </div>
     )
 }

@@ -4,6 +4,8 @@ import { ProfilePicContext } from '../../components/Contexts';
 import Navbar from '../../components/Navbar';
 import TopArtists from '../../components/TopArtists'
 import TopTracks from '../../components/TopTracks'
+import CountSongStream from '../../components/CountSongStream'
+
 const Profile = () => {
     const { user, accessToken } = useContext(ProfilePicContext);
     const [playlists, setPlaylists] = useState([]);
@@ -38,11 +40,12 @@ const Profile = () => {
             {item.images && item.images.length > 0 && (
                 <img className="w-[75px] h-[75px]" src={item.images[0].url} alt="playlist cover"/>
             )}
-            <p>{item.name}</p>
+            <p className='font-barlow'>{item.name}</p>
         </div>
     ));
 
-    return (    
+    return (
+        <div>
         <div className="grid grid-cols-3">
             <div>
                 <TopArtists/>
@@ -51,10 +54,17 @@ const Profile = () => {
                 <TopTracks/>
             </div>
             <div className="grid grid-cols-1 gap-4">
-                Playlists:
+                <p className="font-tenor">Playlists:</p>
+                <div className="h-96 overflow-y-scroll">
                 {playlist_list}
+                </div>
             </div>
         </div>
+
+        <div>
+            <CountSongStream/>
+        </div>
+    </div>
     );
 };
 

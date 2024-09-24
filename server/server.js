@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const request = require("request");
 const querystring = require('querystring');
 
-const connectionURI = "mongodb+srv://playlistdev:vibeycollection@playlist-cluster.7dymmjj.mongodb.net/?retryWrites=true&w=majority&appName=playlist-cluster"
+const connectionURI = "mongodb+srv://cnle:WmiGApicJ75hFV6w@playlist-cluster.3tpnl.mongodb.net/?retryWrites=true&w=majority&appName=playlist-cluster"
 let REDIRECT_URI = 'http://localhost:8888/callback'
 let FRONTEND_URI = process.env.FRONTEND_URI || 'http://localhost:3000/profile';
 const PORT = process.env.PORT || 8888;
@@ -16,19 +16,22 @@ if (process.env.NODE_ENV !== 'production') {
     REDIRECT_URI = 'http://localhost:8888/callback';
     FRONTEND_URI = 'http://localhost:3000/profile';
   }
-
+const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 const CLIENT_ID = "b200e6a1de8a440fbb247a9fdd17c02b"
 const END_POINT = 'https://accounts.spotify.com/authorize';
 const CLIENT_SECRET = "cc17b5100c3a4e4a9a0353f0a62fe9f1"
 
 main().catch((err) => console.log(err));
 async function main(){
-    try {
-        await mongoose.connect(connectionURI);
-        console.log("Connection to MongoDB was successful");
-    } catch (err) {
-        console.error("Error connecting to MongoDB", err);
-    }
+  try {
+    // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
+    await mongoose.connect(connectionURI, clientOptions);
+    await mongoose.connection.db.admin().command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await mongoose.disconnect();
+  }
 }
 
 let stateKey = 'spotify_auth_state'; 

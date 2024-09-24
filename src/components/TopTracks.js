@@ -37,7 +37,9 @@ const TopTracks = () => {
     return(
         <div>
             <p className="font-tenor">Top Songs:</p>
+            <div className="h-96 overflow-y-scroll">
             {display_top_songs}
+            </div>
         </div>
     )
 }
