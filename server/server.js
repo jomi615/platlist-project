@@ -21,6 +21,8 @@ const CLIENT_ID = "b200e6a1de8a440fbb247a9fdd17c02b"
 const END_POINT = 'https://accounts.spotify.com/authorize';
 const CLIENT_SECRET = "cc17b5100c3a4e4a9a0353f0a62fe9f1"
 
+const songsPlayedRoute = require('./routes/songPlayed');  // Adjust path as necessary
+
 main().catch((err) => console.log(err));
 async function main(){
   try {
@@ -30,7 +32,6 @@ async function main(){
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
-    await mongoose.disconnect();
   }
 }
 
@@ -50,7 +51,10 @@ let app = express();
 
 app.use(cors())
    .use(cookieParser());
-    
+app.use(bodyParser.json());
+
+app.use('/api/songs', songsPlayedRoute);
+
 app.get('/login', function(req, res){
     var state = generateRandomString(16);
     res.cookie(stateKey, state); // set cookie to travel with request

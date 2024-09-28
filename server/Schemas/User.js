@@ -3,17 +3,17 @@ const mongoose = require("mongoose");
 const userSchema = mongoose.Schema ({
     user_id:{
         type:String, 
-        require:true
+        required:true
     },
 
     access_token:{
         type:String, 
-        require:true
+        required:true
     },
 
     songs_played:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref:Songs
+        ref:"Songs",
     }],
 })
 
