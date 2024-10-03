@@ -36,4 +36,14 @@ songsPlayedRoute.post('/addsong', async function(req, res) {
     }
 });
 
+songsPlayedRoute.get('/topten', async function(req, res) {
+    try {
+        let topSongs = await Songs.find().sort({ num_played: -1 }).limit(10);
+        res.status(200).json(topSongs);
+    } catch (error) {
+        console.error('Error fetching top songs:', error);
+        return res.status(500).json({ message: 'Error fetching top songs' });
+    }
+});
+
 module.exports = songsPlayedRoute;
