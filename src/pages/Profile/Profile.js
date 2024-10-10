@@ -5,7 +5,7 @@ import Navbar from '../../components/Navbar';
 import TopArtists from '../../components/TopArtists'
 import TopTracks from '../../components/TopTracks'
 import CountSongStream from '../../components/CountSongStream'
-
+import TopAlbums from '../../components/TopAlbums'
 const Profile = () => {
     const { user, accessToken } = useContext(ProfilePicContext);
     const [playlists, setPlaylists] = useState([]);
@@ -63,6 +63,10 @@ const Profile = () => {
 
         <div>
             <CountSongStream/>
+        </div>
+
+        <div>
+            <TopAlbums/>
         </div>
     </div>
     );

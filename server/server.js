@@ -22,7 +22,7 @@ const END_POINT = 'https://accounts.spotify.com/authorize';
 const CLIENT_SECRET = "cc17b5100c3a4e4a9a0353f0a62fe9f1"
 
 const songsPlayedRoute = require('./routes/songPlayed');  // Adjust path as necessary
-
+const albumsPlayedRoute = require('./routes/albumsPlayed')
 main().catch((err) => console.log(err));
 async function main(){
   try {
@@ -54,7 +54,7 @@ app.use(cors())
 app.use(bodyParser.json());
 
 app.use('/api/songs', songsPlayedRoute);
-
+app.use('/api/albums', albumsPlayedRoute)
 app.get('/login', function(req, res){
     var state = generateRandomString(16);
     res.cookie(stateKey, state); // set cookie to travel with request
