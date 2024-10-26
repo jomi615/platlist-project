@@ -4,7 +4,7 @@ import Auth from "./pages/Auth/Auth";
 import HomePage from "./pages/HomePage/HomePage"
 import Profile from "./pages/Profile/Profile"
 import LandingPage from "./pages/LandingPage/LandingPage"
-
+import GetRecommendation from "./pages/GetRecommendation/GetRecommendation"
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import * as ROUTES from "./constants/routes";
 import Navbar from './components/Navbar'; // Adjust the path accordingly
@@ -22,6 +22,7 @@ function AppContent() {
         <Route path={ROUTES.LOGIN} element={<Auth />} />
         <Route path={ROUTES.HOME} element={<HomePage />} />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
+        <Route path={ROUTES.GENERATEPLAYLIST} element = {<GetRecommendation/>}/>
       </Routes>
     </div>
   );

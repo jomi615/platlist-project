@@ -59,7 +59,7 @@ app.get('/login', function(req, res){
     var state = generateRandomString(16);
     res.cookie(stateKey, state); // set cookie to travel with request
 
-    var SCOPES = 'user-read-playback-state user-read-currently-playing playlist-read-private user-read-recently-played user-top-read'
+    var SCOPES = 'user-read-playback-state user-read-currently-playing playlist-read-private user-read-recently-played user-top-read playlist-modify-public playlist-modify-private'
     res.redirect(`${END_POINT}?`+
     querystring.stringify({
       response_type: 'code',

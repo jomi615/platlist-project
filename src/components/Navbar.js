@@ -8,8 +8,9 @@ const Navbar = () => {
     const tabs = [
         { name: "Profile", link: "/profile" },
         { name: "Home", link: "/home" },
-        { name: "Create Playlists" },
-        { name: "Sign Out" }
+        { name: "Create Playlists", link:"/generateplaylist" },
+        { name: "Sign Out", link:"/signout"}
+
     ];
 
     const leftTabs = tabs.slice(0, tabs.length / 2);
@@ -22,7 +23,7 @@ const Navbar = () => {
     ));
 
     const rightHeaders = rightTabs.map(item => (
-        <div key={item.name} className="px-10 py-2">
+        <div key={item.name} href={item.link} className="px-10 py-2">
             {item.name}
         </div>
     ));
